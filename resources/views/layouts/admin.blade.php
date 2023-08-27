@@ -221,8 +221,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('catalogs') }}"
-                                class="nav-link  {{ request()->routeIs('catalogs') ? 'active' : '' }}">
+                            <a href="{{ route('catalogs.index') }}"
+                                class="nav-link  {{ request()->routeIs('catalogs.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Catalog

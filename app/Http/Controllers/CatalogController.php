@@ -21,7 +21,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.catalog.create');
     }
 
     /**
@@ -29,7 +29,14 @@ class CatalogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:catalogs,name',
+        ]);
+
+        $data = $request->all();
+        Catalog::create($data);
+
+        return redirect()->route('catalogs.index');
     }
 
     /**
@@ -45,7 +52,9 @@ class CatalogController extends Controller
      */
     public function edit(Catalog $catalog)
     {
-        //
+        $catalog =  Catalog::find($catalog->id);
+
+        return view('admin.catalog.edit', compact('catalog'));
     }
 
     /**
@@ -53,7 +62,14 @@ class CatalogController extends Controller
      */
     public function update(Request $request, Catalog $catalog)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:catalogs,name,' . $catalog->id,
+        ]);
+
+        $data = $request->all();
+        $catalog->update($data);
+
+        return redirect()->route('catalogs.index');
     }
 
     /**
@@ -61,6 +77,8 @@ class CatalogController extends Controller
      */
     public function destroy(Catalog $catalog)
     {
-        //
+        $catalog->delete();
+
+        return redirect()->route('catalogs.index');
     }
 }
