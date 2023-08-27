@@ -9,12 +9,14 @@ class Member extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'gender', 'phone_number', 'address', 'email'];
+
     public function users()
     {
         return $this->hasMany(User::class);
     }
 
-    public function transaction()
+    public function transactions()
     {
         return $this->hasMany(Transaction::class);
     }

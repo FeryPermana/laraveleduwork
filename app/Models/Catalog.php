@@ -9,8 +9,10 @@ class Catalog extends Model
 {
     use HasFactory;
 
-    public function book()
+    protected $fillable = ['name'];
+
+    public function books()
     {
-        $this->hasMany(Book::class);
+        return $this->hasMany(Book::class);
     }
 }

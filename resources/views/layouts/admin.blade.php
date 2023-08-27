@@ -221,8 +221,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('catalog') }}"
-                                class="nav-link  {{ request()->routeIs('catalog') ? 'active' : '' }}">
+                            <a href="{{ route('catalogs') }}"
+                                class="nav-link  {{ request()->routeIs('catalogs') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-edit"></i>
                                 <p>
                                     Catalog
@@ -230,8 +230,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('publisher') }}"
-                                class="nav-link  {{ request()->routeIs('publisher') ? 'active' : '' }}">
+                            <a href="{{ route('publishers') }}"
+                                class="nav-link  {{ request()->routeIs('publishers') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>
                                     Publisher
@@ -239,8 +239,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('author') }}"
-                                class="nav-link  {{ request()->routeIs('author') ? 'active' : '' }}">
+                            <a href="{{ route('authors') }}"
+                                class="nav-link  {{ request()->routeIs('authors') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Author
@@ -248,8 +248,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('book') }}"
-                                class="nav-link  {{ request()->routeIs('book') ? 'active' : '' }}">
+                            <a href="{{ route('books') }}"
+                                class="nav-link  {{ request()->routeIs('books') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Book
@@ -257,8 +257,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('member') }}"
-                                class="nav-link  {{ request()->routeIs('member') ? 'active' : '' }}">
+                            <a href="{{ route('members') }}"
+                                class="nav-link  {{ request()->routeIs('members') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user-check"></i>
                                 <p>
                                     Member
