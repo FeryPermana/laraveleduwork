@@ -12,7 +12,8 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        return view('admin.publisher.index');
+        $publishers = Publisher::with('books')->get();
+        return view('admin.publisher.index', compact('publishers'));
     }
 
     /**
@@ -20,7 +21,7 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.publisher.create');
     }
 
     /**
@@ -28,7 +29,17 @@ class PublisherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:publishers,name',
+            'email' => 'required|unique:publishers,email',
+            'phone_number' => 'required',
+            'address' => 'required'
+        ]);
+
+        $data = $request->all();
+        Publisher::create($data);
+
+        return redirect()->route('publishers.index');
     }
 
     /**
@@ -44,7 +55,9 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        //
+        $publisher =  Publisher::find($publisher->id);
+
+        return view('admin.publisher.edit', compact('publisher'));
     }
 
     /**
@@ -52,7 +65,17 @@ class PublisherController extends Controller
      */
     public function update(Request $request, Publisher $publisher)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:catalogs,name,' . $publisher->id,
+            'email' => 'required|unique:publishers,email,'  . $publisher->id,
+            'phone_number' => 'required',
+            'address' => 'required'
+        ]);
+
+        $data = $request->all();
+        $publisher->update($data);
+
+        return redirect()->route('publishers.index');
     }
 
     /**
@@ -60,6 +83,8 @@ class PublisherController extends Controller
      */
     public function destroy(Publisher $publisher)
     {
-        //
+        $publisher->delete();
+
+        return redirect()->route('publishers.index');
     }
 }

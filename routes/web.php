@@ -22,7 +22,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
-Route::get('/publishers', [App\Http\Controllers\PublisherController::class, 'index'])->name('publishers');
+Route::resource('/publishers', App\Http\Controllers\PublisherController::class);
 Route::get('/authors', [App\Http\Controllers\AuthorController::class, 'index'])->name('authors');
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');

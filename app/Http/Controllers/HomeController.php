@@ -38,13 +38,13 @@ class HomeController extends Controller
             ->where('users.id', NULL)
             ->get();
 
-        $data3 = Transaction::select('members_id', 'members.name')
-            ->rightJoin('members', 'members.id', '=', 'transaction.member_id')
-            ->where('transaction.member_id', NULL)
+        $data3 = Transaction::select('members.id', 'members.name')
+            ->rightJoin('members', 'members.id', '=', 'transactions.member_id')
+            ->where('transactions.member_id', NULL)
             ->get();
 
         $data4 = Member::select('members.id', 'members.name', 'members.phone_number')
-            ->join('transactions', 'transactions.member_id', '=', 'members_id')
+            ->join('transactions', 'transactions.member_id', '=', 'members.id')
             ->orderBy('members.id', 'asc')
             ->get();
 

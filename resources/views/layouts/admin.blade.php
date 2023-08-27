@@ -230,8 +230,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('publishers') }}"
-                                class="nav-link  {{ request()->routeIs('publishers') ? 'active' : '' }}">
+                            <a href="{{ route('publishers.index') }}"
+                                class="nav-link  {{ request()->routeIs('publishers.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-box"></i>
                                 <p>
                                     Publisher
