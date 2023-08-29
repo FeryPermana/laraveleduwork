@@ -1,6 +1,5 @@
 @extends('layouts.admin')
-
+@section('header', 'Book')
 @section('content')
-    <h2>Dashboard</h2>
     <p>ini adalah halaman book</p>
 @endsection

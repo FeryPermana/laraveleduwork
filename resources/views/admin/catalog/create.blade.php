@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 
+@section('header', 'Catalog')
 @section('content')
     <div class="card">
         <div class="card-header bg-secondary">

@@ -16,6 +16,8 @@
     <!-- Theme style -->
     <link rel="stylesheet"
         href="{{ asset('assets/css/adminlte.min.css') }}">
+
+    @stack('styles')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -239,8 +241,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('authors') }}"
-                                class="nav-link  {{ request()->routeIs('authors') ? 'active' : '' }}">
+                            <a href="{{ route('authors.index') }}"
+                                class="nav-link  {{ request()->routeIs('authors.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-user"></i>
                                 <p>
                                     Author
@@ -274,6 +276,15 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>@yield('header')</h1>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
             <!-- Main content -->
             <section class="content">
 
@@ -310,6 +321,11 @@
     <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

@@ -12,7 +12,8 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        return view('admin.author.index');
+        $authors = Author::with('books')->get();
+        return view('admin.author.index', compact('authors'));
     }
 
     /**
@@ -28,7 +29,17 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:authors,name',
+            'email' => 'required|unique:authors,email',
+            'phone_number' => 'required',
+            'address' => 'required'
+        ]);
+
+        $data = $request->all();
+        Author::create($data);
+
+        return redirect()->route('authors.index');
     }
 
     /**
