@@ -21,7 +21,6 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -63,7 +62,16 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $request->validate([
+            'name' => 'required|unique:authors,name,' . $author->id,
+            'email' => 'required|unique:authors,email,' . $author->id,
+            'phone_number' => 'required',
+            'address' => 'required'
+        ]);
+
+        $author->update($request->all());
+
+        return redirect()->route('authors.index');
     }
 
     /**
@@ -71,6 +79,6 @@ class AuthorController extends Controller
      */
     public function destroy(Author $author)
     {
-        //
+        $author->delete();
     }
 }
