@@ -1,5 +1,16 @@
 @extends('layouts.admin')
 @section('header', 'Author')
+@push('styles')
+    <link rel="stylesheet"
+        href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet"
+        href="{{ asset('assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assest/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
+@endpush
 @section('content')
     <div id="controller">
         <div class="card">
@@ -15,7 +26,8 @@
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table class="table table-bordered table-striped">
+                    <table id="table-author"
+                        class="table table-bordered table-striped w-full">
                         <thead>
                             <th>No</th>
                             <th>Nama</th>
@@ -29,15 +41,15 @@
                         <tbody>
                             @foreach ($authors as $key => $author)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
+                                    <td class="text-center">{{ $key + 1 }}</td>
                                     <td>{{ $author->name }}</td>
                                     <td>{{ $author->email }}</td>
-                                    <td>{{ $author->phone }}</td>
+                                    <td class="text-center">{{ $author->phone_number }}</td>
                                     <td>{{ $author->address }}</td>
                                     <td>{{ count($author->books) }}</td>
                                     <td class="text-center">{{ date('H:i:s - d M Y', strtotime($author->created_at)) }}
                                     </td>
-                                    <td>
+                                    <td class="text-center">
                                         <a href="#"
                                             class="btn btn-warning btn-sm"
                                             @click="editData({{ $author }})">Edit</a>
@@ -123,6 +135,12 @@
 
 
     @push('scripts')
+        <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
+        <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
         <script>
             var controller = new Vue({
                 el: '#controller',
@@ -158,6 +176,10 @@
                         }
                     }
                 },
+            });
+
+            $(document).ready(function() {
+                $('#table-author').DataTable();
             });
         </script>
     @endpush
