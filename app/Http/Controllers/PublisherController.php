@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
 
@@ -12,8 +13,15 @@ class PublisherController extends Controller
      */
     public function index()
     {
-        $publishers = Publisher::with('books')->get();
-        return view('admin.publisher.index', compact('publishers'));
+        return view('admin.publisher.index');
+    }
+
+    public function api()
+    {
+        $publishers = Publisher::all();
+        $datatables = datatables()->of($publishers)->addIndexColumn();
+
+        return $datatables->make(true);
     }
 
     /**
@@ -21,7 +29,6 @@ class PublisherController extends Controller
      */
     public function create()
     {
-        return view('admin.publisher.create');
     }
 
     /**
@@ -55,9 +62,9 @@ class PublisherController extends Controller
      */
     public function edit(Publisher $publisher)
     {
-        $publisher =  Publisher::find($publisher->id);
+        // $publisher =  Publisher::find($publisher->id);
 
-        return view('admin.publisher.edit', compact('publisher'));
+        // return view('admin.publisher.edit', compact('publisher'));
     }
 
     /**
@@ -84,7 +91,5 @@ class PublisherController extends Controller
     public function destroy(Publisher $publisher)
     {
         $publisher->delete();
-
-        return redirect()->route('publishers.index');
     }
 }
