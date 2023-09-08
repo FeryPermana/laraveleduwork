@@ -26,7 +26,7 @@
                                 <td>{{ $key + 1 }}</td>
                                 <td>{{ $catalog->name }}</td>
                                 <td>{{ count($catalog->books) }}</td>
-                                <td class="text-center">{{ date('H:i:s - d M Y', strtotime($catalog->created_at)) }}</td>
+                                <td class="text-center">{{ format_tanggal($catalog->created_at) }}</td>
                                 <td>
                                     <a href="{{ route('catalogs.edit', $catalog->id) }}"
                                         class="btn btn-warning btn-sm">Edit</a>

@@ -33,6 +33,10 @@ class BookController extends Controller
     {
         $books = Book::all();
 
+        foreach ($books as $book) {
+            $book->date = format_tanggal($book->created_at);
+        }
+
         return json_encode($books);
     }
 

@@ -32,6 +32,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Alamat</th>
+                            <th>Created At</th>
                             <th style="width: 130px;">Aksi</th>
                         </thead>
                     </table>
@@ -141,6 +142,11 @@
             },
             {
                 data: 'address',
+                class: 'text-center',
+                orderable: true
+            },
+            {
+                data: 'date',
                 class: 'text-center',
                 orderable: true
             },

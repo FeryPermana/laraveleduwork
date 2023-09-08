@@ -31,8 +31,9 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Alamat</th>
-                            <th style="width: 130px;">Aksi</th>
+                            <th>Address</th>
+                            <th>Created At</th>
+                            <th style="width: 130px;">Action</th>
                         </thead>
                     </table>
                 </div>
@@ -140,6 +141,11 @@
                 },
                 {
                     data: 'address',
+                    class: 'text-center',
+                    orderable: true
+                },
+                {
+                    data: 'date',
                     class: 'text-center',
                     orderable: true
                 },
