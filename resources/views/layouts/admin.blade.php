@@ -250,8 +250,8 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('books') }}"
-                                class="nav-link  {{ request()->routeIs('books') ? 'active' : '' }}">
+                            <a href="{{ route('books.index') }}"
+                                class="nav-link  {{ request()->routeIs('books.*') ? 'active' : '' }}">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Book

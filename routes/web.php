@@ -26,6 +26,7 @@ Route::resource('/publishers', App\Http\Controllers\PublisherController::class);
 Route::get('/api/publishers', [App\Http\Controllers\PublisherController::class, 'api'])->name('publishers.api');
 Route::resource('/authors', App\Http\Controllers\AuthorController::class);
 Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api'])->name('authors.api');
-Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
+Route::resource('/books', App\Http\Controllers\BookController::class);
+Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api'])->name('books.api');
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
 Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api'])->name('members.api');
