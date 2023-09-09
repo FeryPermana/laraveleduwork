@@ -29,4 +29,5 @@ Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api']
 Route::resource('/books', App\Http\Controllers\BookController::class);
 Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api'])->name('books.api');
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
+Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api'])->name('members.api');
