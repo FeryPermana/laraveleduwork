@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('header', 'Author')
+@section('header', 'Member')
 @push('styles')
     <link rel="stylesheet"
         href="{{ asset('assets/plugins/fontawesome-free/css/all.min.css') }}">
@@ -15,20 +15,35 @@
     <div id="controller">
         <div class="card">
             <div class="card-header bg-secondary">
-                <div class="d-flex justify-content-between align-items-center">
-                    <h3 class="card-title">Member</h3>
-                    <a href="#"
-                        @click="addData()"
-                        class="btn btn-sm btn-primary pull-right">Tambah Author</a>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3 class="card-title">Member</h3>
+                    </div>
+                    <div class="col-md-4">
+                        <select name="gender"
+                            class="form-control">
+                            <option value="0">Semua Jenis Kelamin</option>
+                            <option value="1">Laki laki</option>
+                            <option value="2">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <d class="d-flex justify-content-end">
+                            <a href="#"
+                                @click="addData()"
+                                class="btn btn-sm btn-primary">Tambah Author</a>
+                        </d>
+                    </div>
                 </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="table-author"
+                    <table id="table-member"
                         class="table table-bordered table-striped w-full">
                         <thead>
                             <th>No</th>
                             <th>Nama</th>
+                            <th>Gender</th>
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Alamat</th>
@@ -69,6 +84,14 @@
                                     class="form-control"
                                     name="name"
                                     :value="data.name"
+                                    required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Gender</label>
+                                <input type="text"
+                                    class="form-control"
+                                    name="gender"
+                                    :value="data.gender"
                                     required>
                             </div>
                             <div class="form-group">
@@ -117,8 +140,8 @@
         <script src="{{ asset('assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatables-buttons/js/buttons.bootstrap4.min.js') }}"></script>
         <script>
-            var actionUrl = '{{ url('/authors') }}';
-            var apiUrl = '{{ url('/api/authors') }}';
+            var actionUrl = '{{ url('/members') }}';
+            var apiUrl = '{{ url('/api/members') }}';
 
             var columns = [{
                     data: 'DT_RowIndex',
@@ -126,6 +149,10 @@
                     orderable: true
                 }, {
                     data: 'name',
+                    class: 'text-center',
+                    orderable: true
+                }, {
+                    data: 'gender',
                     class: 'text-center',
                     orderable: true
                 },
@@ -177,7 +204,7 @@
                 methods: {
                     datatable() {
                         const _this = this;
-                        _this.table = $('#table-author').DataTable({
+                        _this.table = $('#table-member').DataTable({
                             ajax: {
                                 url: _this.apiUrl,
                                 type: 'GET',
@@ -189,7 +216,7 @@
                     },
                     addData() {
                         this.data = {};
-                        this.actionUrl = '{{ url('authors') }}';
+                        this.actionUrl = '{{ url('members') }}';
                         this.editStatus = false;
                         $('#modal-default').modal();
                     },
@@ -220,12 +247,23 @@
                 }
             });
         </script>
+        <script>
+            $('select[name=gender]').on('change', function() {
+                gender = $('select[name=gender]').val();
+
+                if (gender == 0) {
+                    controller.table.ajax.url(apiUrl).load();
+                } else {
+                    controller.table.ajax.url(apiUrl + '?gender=' + gender).load();
+                }
+            })
+        </script>
         {{-- <script>
             var controller = new Vue({
                 el: '#controller',
                 data: {
                     data: {},
-                    actionUrl: '{{ url('authors') }}',
+                    actionUrl: '{{ url('members') }}',
                     editStatus: false
                 },
                 mounted: function() {
@@ -234,18 +272,18 @@
                 methods: {
                     addData() {
                         this.data = {};
-                        this.actionUrl = '{{ url('authors') }}';
+                        this.actionUrl = '{{ url('members') }}';
                         this.editStatus = false;
                         $('#modal-default').modal();
                     },
                     editData(data) {
                         this.data = data;
-                        this.actionUrl = '{{ url('authors') }}' + '/' + data.id;
+                        this.actionUrl = '{{ url('members') }}' + '/' + data.id;
                         this.editStatus = true;
                         $('#modal-default').modal();
                     },
                     deleteData(id) {
-                        this.actionUrl = '{{ url('authors') }}' + '/' + id;
+                        this.actionUrl = '{{ url('members') }}' + '/' + id;
                         if (confirm('Are you sure')) {
                             axios.post(this.actionUrl, {
                                 _method: 'DELETE'
@@ -258,7 +296,7 @@
             });
 
             $(document).ready(function() {
-                $('#table-author').DataTable();
+                $('#table-member').DataTable();
             });
         </script> --}}
     @endpush

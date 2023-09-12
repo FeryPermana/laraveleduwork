@@ -27,6 +27,8 @@ Route::get('/api/publishers', [App\Http\Controllers\PublisherController::class, 
 Route::resource('/authors', App\Http\Controllers\AuthorController::class);
 Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api'])->name('authors.api');
 Route::resource('/books', App\Http\Controllers\BookController::class);
+Route::resource('/transactions', App\Http\Controllers\TransactionController::class);
+Route::get('/api/transactions', [App\Http\Controllers\TransactionController::class, 'api'])->name('transactions.api');
 Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api'])->name('books.api');
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
 Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');

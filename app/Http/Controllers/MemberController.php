@@ -15,12 +15,24 @@ class MemberController extends Controller
         return view('admin.member.index');
     }
 
-    public function api()
+    public function api(Request $request)
     {
-        $members = Member::all();
+        if ($request->gender) {
+            $members = Member::where('gender', $request->gender)->get();
+        } else {
+            $members = Member::all();
+        }
+
         $datatables = datatables()->of($members)
             ->addColumn('date', function ($member) {
                 return format_tanggal($member->created_at);
+            })
+            ->addColumn('gender', function ($member) {
+                if ($member->gender == "1") {
+                    return "Laki laki";
+                } else {
+                    return "Perempuan";
+                }
             })
             ->addIndexColumn();
 
