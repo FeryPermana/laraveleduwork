@@ -33,3 +33,5 @@ Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api'])->n
 Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
 Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
 Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api'])->name('members.api');
+
+Route::get('/test_spatie', [App\Http\Controllers\AdminController::class, 'test_spatie'])->name('test_spatie');

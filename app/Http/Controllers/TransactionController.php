@@ -16,9 +16,13 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        $transactions = Transaction::orderBy('date_start', 'asc')->get();
+        if (auth()->user()->role('petugas')) {
+            $transactions = Transaction::orderBy('date_start', 'asc')->get();
 
-        return view('admin.transaction.index', compact('transactions'));
+            return view('admin.transaction.index', compact('transactions'));
+        } else {
+            return abort('403');
+        }
     }
 
     public function api(Request $request)

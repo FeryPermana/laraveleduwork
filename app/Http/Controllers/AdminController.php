@@ -7,8 +7,11 @@ use App\Models\Book;
 use App\Models\Member;
 use App\Models\Publisher;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 
 use function Laravel\Prompts\select;
 
@@ -59,8 +62,27 @@ class AdminController extends Controller
         ));
     }
 
-
-    public function katalog()
+    public function test_spatie()
     {
+        // $role = Role::create(['name' => 'petugas']);
+        // $permission = Permission::create(['name' => 'index peminjaman']);
+
+        // $role->givePermissionTo($permission);
+        // $permission->assignRole($role);
+
+        // $user = auth()->user();
+        // $user->assignRole('petugas');
+        // return $user;
+
+        // $user = User::where('id', 2)->first();
+        // $user->assignRole('petugas');
+        // return $user;
+
+        // $user = User::with('roles')->get();
+        // return $user;
+
+        // $user = auth()->user();
+        // $user->removeRole('petugas');
+        // return $user;
     }
 }

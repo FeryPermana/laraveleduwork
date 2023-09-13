@@ -12,66 +12,68 @@
         href="{{ asset('assest/plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
 @endpush
 @section('content')
-    <div id="controller">
-        <div class="card">
-            <div class="card-header bg-secondary">
-                <div class="row">
-                    <div class="col-md-3">
-                        <h3 class="card-title">Transaction</h3>
-                    </div>
-                    <div class="col-md-2">
-                        <select name="status"
-                            class="form-control">
-                            <option value=""
-                                selected>Status</option>
-                            <option value="1">Kembali</option>
-                            <option value="2">Belum Kembali</option>
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <select name="tanggal"
-                            class="form-control">
-                            <option value=""
-                                selected>Tanggal</option>
-                            @foreach ($transactions as $transaction)
-                                <option value="{{ $transaction->date_start }}">
-                                    {{ format_tanggal($transaction->date_start) }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-2">
-                        <button id="filter"
-                            class="btn btn-success">Filter</button>
-                    </div>
-                    <div class="col-md-3">
-                        <d class="d-flex justify-content-end">
-                            <a href="{{ route('transactions.create') }}"
-                                class="btn btn-sm btn-primary">Tambah Transaction</a>
-                        </d>
+
+    @can('index peminjaman')
+        <div id="controller">
+            <div class="card">
+                <div class="card-header bg-secondary">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h3 class="card-title">Transaction</h3>
+                        </div>
+                        <div class="col-md-2">
+                            <select name="status"
+                                class="form-control">
+                                <option value=""
+                                    selected>Status</option>
+                                <option value="1">Kembali</option>
+                                <option value="2">Belum Kembali</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select name="tanggal"
+                                class="form-control">
+                                <option value=""
+                                    selected>Tanggal</option>
+                                @foreach ($transactions as $transaction)
+                                    <option value="{{ $transaction->date_start }}">
+                                        {{ format_tanggal($transaction->date_start) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button id="filter"
+                                class="btn btn-success">Filter</button>
+                        </div>
+                        <div class="col-md-3">
+                            <d class="d-flex justify-content-end">
+                                <a href="{{ route('transactions.create') }}"
+                                    class="btn btn-sm btn-primary">Tambah Transaction</a>
+                            </d>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table id="table-transaction"
-                        class="table table-bordered table-striped w-full">
-                        <thead>
-                            <th>No</th>
-                            <th>Tanggal Pinjam</th>
-                            <th>Tanggal Kembali</th>
-                            <th>Nama Peminjam</th>
-                            <th>Lama Pinjam (hari)</th>
-                            <th>Total Buku</th>
-                            <th>Total Bayar</th>
-                            <th>Status</th>
-                            <th style="width: 130px;">Action</th>
-                        </thead>
-                    </table>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table id="table-transaction"
+                            class="table table-bordered table-striped w-full">
+                            <thead>
+                                <th>No</th>
+                                <th>Tanggal Pinjam</th>
+                                <th>Tanggal Kembali</th>
+                                <th>Nama Peminjam</th>
+                                <th>Lama Pinjam (hari)</th>
+                                <th>Total Buku</th>
+                                <th>Total Bayar</th>
+                                <th>Status</th>
+                                <th style="width: 130px;">Action</th>
+                            </thead>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
+    @endcan
     @push('scripts')
         <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
         <script src="{{ asset('assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
