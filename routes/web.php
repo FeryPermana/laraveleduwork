@@ -19,19 +19,20 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
+    Route::resource('/publishers', App\Http\Controllers\PublisherController::class);
+    Route::get('/api/publishers', [App\Http\Controllers\PublisherController::class, 'api'])->name('publishers.api');
+    Route::resource('/authors', App\Http\Controllers\AuthorController::class);
+    Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api'])->name('authors.api');
+    Route::resource('/books', App\Http\Controllers\BookController::class);
+    Route::resource('/transactions', App\Http\Controllers\TransactionController::class);
+    Route::get('/api/transactions', [App\Http\Controllers\TransactionController::class, 'api'])->name('transactions.api');
+    Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api'])->name('books.api');
+    Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
+    Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api'])->name('members.api');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('/catalogs', App\Http\Controllers\CatalogController::class);
-Route::resource('/publishers', App\Http\Controllers\PublisherController::class);
-Route::get('/api/publishers', [App\Http\Controllers\PublisherController::class, 'api'])->name('publishers.api');
-Route::resource('/authors', App\Http\Controllers\AuthorController::class);
-Route::get('/api/authors', [App\Http\Controllers\AuthorController::class, 'api'])->name('authors.api');
-Route::resource('/books', App\Http\Controllers\BookController::class);
-Route::resource('/transactions', App\Http\Controllers\TransactionController::class);
-Route::get('/api/transactions', [App\Http\Controllers\TransactionController::class, 'api'])->name('transactions.api');
-Route::get('/api/books', [App\Http\Controllers\BookController::class, 'api'])->name('books.api');
-Route::get('/members', [App\Http\Controllers\MemberController::class, 'index'])->name('members');
-Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
-Route::get('/api/members', [App\Http\Controllers\MemberController::class, 'api'])->name('members.api');
-
-Route::get('/test_spatie', [App\Http\Controllers\AdminController::class, 'test_spatie'])->name('test_spatie');
+    Route::get('/test_spatie', [App\Http\Controllers\AdminController::class, 'test_spatie'])->name('test_spatie');
+});
